@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate Placeholder Images</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .controls {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    button {
+      background-color: #FA9939;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .image-item {
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .image-item canvas {
+      width: 100%;
+      height: 200px;
+      background-color: #f0f0f0;
+    }
+    .image-item h3 {
+      margin: 10px 0 5px;
+    }
+    .image-item p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+    .download-link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #FA9939;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Generate Placeholder Images</h1>
+  
+  <div class="controls">
+    <button id="generateBtn">Generate Images</button>
+    <button id="downloadAllBtn">Download All</button>
+  </div>
+  
+  <div class="image-grid" id="imageGrid"></div>
+  
+  <script>
+    const images = [
+      { name: 'project1.png', text: 'Shri GogaJi SoftIn Services' },
+      { name: 'project3.png', text: 'Savitri Textiles' },
+      { name: 'isa.png', text: 'Indian Survival Academy' },
+      { name: 'project2v2.png', text: 'App Usage Tracker' },
+      { name: 'about.png', text: 'About section' },
+      { name: 'inline-logo-1.png', text: 'Natlov Logo' },
+      { name: 'ItService.png', text: 'IT Services' },
+      { name: 'itsupport.png', text: 'Technical Support' },
+      { name: '8df690172c37da6afc3b32ae185a5767.png', text: 'Staycation' }
+    ];
+    
+    const imageGrid = document.getElementById('imageGrid');
+    const generateBtn = document.getElementById('generateBtn');
+    const downloadAllBtn = document.getElementById('downloadAllBtn');
+    
+    function generateImage(image) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 800;
+      canvas.height = 600;
+      const ctx = canvas.getContext('2d');
+      
+      // Fill background
+      ctx.fillStyle = '#f0f0f0';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Add text
+      ctx.fillStyle = '#333';
+      ctx.font = 'bold 24px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(image.text, canvas.width / 2, canvas.height / 2);
+      
+      // Add filename
+      ctx.font = '16px Arial';
+      ctx.fillText(image.name, canvas.width / 2, canvas.height / 2 + 40);
+      
+      return canvas;
+    }
+    
+    function createImageItem(image) {
+      const item = document.createElement('div');
+      item.className = 'image-item';
+      
+      const canvas = generateImage(image);
+      item.appendChild(canvas);
+      
+      const title = document.createElement('h3');
+      title.textContent = image.name;
+      item.appendChild(title);
+      
+      const desc = document.createElement('p');
+      desc.textContent = image.text;
+      item.appendChild(desc);
+      
+      const downloadLink = document.createElement('a');
+      downloadLink.href = canvas.toDataURL('image/png');
+      downloadLink.download = image.name;
+      downloadLink.className = 'download-link';
+      downloadLink.textContent = 'Download';
+      item.appendChild(downloadLink);
+      
+      return item;
+    }
+    
+    function generateAllImages() {
+      imageGrid.innerHTML = '';
+      images.forEach(image => {
+        imageGrid.appendChild(createImageItem(image));
+      });
+    }
+    
+    function downloadAllImages() {
+      images.forEach(image => {
+        const canvas = generateImage(image);
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = image.name;
+        link.click();
+      });
+    }
+    
+    generateBtn.addEventListener('click', generateAllImages);
+    downloadAllBtn.addEventListener('click', downloadAllImages);
+    
+    // Generate images on page load
+    generateAllImages();
+  </script>
+</body>
+</html> 
