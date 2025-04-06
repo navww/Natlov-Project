@@ -1,32 +1,32 @@
 :root {
   /* Primary Colors */
-  --primary-color: #FF3B30; /* Vibrant Red */
-  --primary-color-dark: #CC2E26;
-  --primary-color-light: #FF6B61;
-  --primary-color-rgb: 255, 59, 48;
+  --primary-color: #FF69B4; /* Hot Pink */
+  --primary-color-dark: #CC5490;
+  --primary-color-light: #FF8DC7;
+  --primary-color-rgb: 255, 105, 180;
   
   /* Secondary Colors */
-  --secondary-color: #FF9500; /* Glow-worm Orange */
-  --secondary-color-dark: #CC7700;
-  --secondary-color-light: #FFB84D;
-  --secondary-color-rgb: 255, 149, 0;
+  --secondary-color: #FFB6C1; /* Light Pink */
+  --secondary-color-dark: #CC929A;
+  --secondary-color-light: #FFD1D9;
+  --secondary-color-rgb: 255, 182, 193;
   
   /* Accent Colors */
-  --accent-color: #FFD60A; /* Glow-worm Yellow */
-  --accent-color-dark: #CCAB08;
-  --accent-color-light: #FFE14D;
-  --accent-color-rgb: 255, 214, 10;
+  --accent-color: #FFC0CB; /* Pink */
+  --accent-color-dark: #CC9AA3;
+  --accent-color-light: #FFD9E0;
+  --accent-color-rgb: 255, 192, 203;
   
-  /* Light Gray Scale */
+  /* White Scale */
   --gray-100: #FFFFFF; /* Pure white */
-  --gray-200: #F8F8F8; /* Very light gray */
-  --gray-300: #F0F0F0; /* Light gray */
-  --gray-400: #E8E8E8; /* Medium light gray */
-  --gray-500: #E0E0E0; /* Medium gray */
-  --gray-600: #D8D8D8; /* Medium dark gray */
-  --gray-700: #D0D0D0; /* Dark light gray */
-  --gray-800: #C8C8C8; /* Dark gray */
-  --gray-900: #C0C0C0; /* Very dark light gray */
+  --gray-200: #FDFDFD; /* Almost white */
+  --gray-300: #FBFBFB; /* Very light white */
+  --gray-400: #F9F9F9; /* Light white */
+  --gray-500: #F7F7F7; /* Medium white */
+  --gray-600: #F5F5F5; /* Medium dark white */
+  --gray-700: #F3F3F3; /* Dark light white */
+  --gray-800: #F1F1F1; /* Dark white */
+  --gray-900: #EFEFEF; /* Very dark white */
   
   /* Background Colors */
   --background-color: var(--gray-100);
@@ -34,9 +34,9 @@
   --background-tertiary: var(--gray-300);
   
   /* Dark Theme Background Colors */
-  --dark-background: var(--gray-900);
-  --dark-background-secondary: var(--gray-800);
-  --dark-background-tertiary: var(--gray-700);
+  --dark-background: #0A0A0A; /* Very dark background for better contrast */
+  --dark-background-secondary: #141414;
+  --dark-background-tertiary: #1E1E1E;
   
   /* Text Colors */
   --text-primary: var(--gray-900);
@@ -44,13 +44,13 @@
   --text-tertiary: var(--gray-500);
   
   /* Dark Theme Text Colors */
-  --dark-text-primary: var(--gray-100);
-  --dark-text-secondary: var(--gray-300);
-  --dark-text-tertiary: var(--gray-500);
+  --dark-text-primary: #FFFFFF; /* Pure white for primary text */
+  --dark-text-secondary: #E6F7FF; /* Light blue-white for secondary text */
+  --dark-text-tertiary: #CCE6FF; /* Water blue for tertiary text */
   
   /* Border Colors */
   --border-color: var(--gray-400);
-  --dark-border-color: var(--gray-600);
+  --dark-border-color: #333333; /* Darker border for better visibility */
   
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
@@ -58,9 +58,9 @@
   --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
   
   /* Dark Theme Gradients */
-  --dark-gradient-1: linear-gradient(135deg, var(--primary-color-dark) 0%, var(--secondary-color-dark) 100%);
-  --dark-gradient-2: linear-gradient(135deg, var(--secondary-color-dark) 0%, var(--accent-color-dark) 100%);
-  --dark-gradient-3: linear-gradient(135deg, var(--accent-color-dark) 0%, var(--primary-color-dark) 100%);
+  --dark-gradient-1: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  --dark-gradient-2: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+  --dark-gradient-3: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
   
   /* Shadows */
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -69,10 +69,10 @@
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.05);
   
   /* Dark Theme Shadows */
-  --dark-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
-  --dark-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.2);
-  --dark-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2);
-  --dark-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.2);
+  --dark-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --dark-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --dark-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+  --dark-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.4);
   
   /* Transitions */
   --transition-fast: 0.2s ease;

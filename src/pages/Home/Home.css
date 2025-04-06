@@ -11,7 +11,7 @@
   width: 100%;
   height: 500px;
   overflow: hidden;
-  background: linear-gradient(135deg, #001F3D 0%, #003366 100%);
+  background: linear-gradient(135deg, #6c757d 0%, #ef4444 100%);
   color: white;
 }
 
@@ -42,6 +42,8 @@
 
 .carousel-content {
   max-width: 800px;
+  position: relative;
+  z-index: 5;
 }
 
 .carousel-content h2 {
@@ -63,6 +65,7 @@
   transform: translateX(-50%);
   display: flex;
   gap: 10px;
+  z-index: 10;
 }
 
 .indicator {
@@ -186,34 +189,87 @@
   margin-top: 40px;
 }
 
+/* Card 3D Effects and Animations */
 .card {
   border: none;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.5s ease, box-shadow 0.5s ease, border 0.5s ease;
   margin-bottom: 30px;
   height: 100%;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  position: relative;
+  border: 2px solid transparent;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  border: 2px solid #ef4444;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(250, 153, 57, 0.1) 0%, rgba(0, 31, 61, 0.1) 100%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card-img-top {
   height: 200px;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.05);
 }
 
 .card-body {
   padding: 25px;
+  position: relative;
+  z-index: 2;
+  transform: translateZ(20px);
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-body {
+  transform: translateZ(30px);
 }
 
 .card-title {
   color: #FA9939;
   font-size: 1.3rem;
   margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.card-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #FA9939;
+  transition: width 0.3s ease;
+}
+
+.card:hover .card-title::after {
+  width: 100%;
 }
 
 .card-text {
@@ -221,6 +277,11 @@
   line-height: 1.6;
   color: #555;
   margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.card:hover .card-text {
+  color: #333;
 }
 
 .btn-primary {
@@ -231,12 +292,32 @@
   border-radius: 5px;
   font-weight: 600;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+  z-index: -1;
 }
 
 .btn-primary:hover {
   background-color: #e88b28;
   border-color: #e88b28;
   transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(250, 153, 57, 0.3);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
 }
 
 /* Staycation Section */
@@ -398,6 +479,7 @@
   margin: 0 auto;
 }
 
+/* Project Item 3D Effects */
 .project-item {
   margin-bottom: 30px;
   position: relative;
@@ -407,42 +489,15 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   padding: 15px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  border: 2px solid transparent;
 }
 
-.project-item::before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  width: 8px;
-  height: 8px;
-  background-color: #FA9939;
-  border-radius: 50%;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.project-item:hover::before {
-  opacity: 1;
-}
-
-.project-item::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  right: -5px;
-  width: 8px;
-  height: 8px;
-  background-color: #001F3D;
-  border-radius: 50%;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.project-item:hover::after {
-  opacity: 1;
+.project-item:hover {
+  transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ef4444;
 }
 
 .project-image {
@@ -456,6 +511,11 @@
   position: relative;
   background-color: white;
   padding: 10px;
+  transform: translateZ(10px);
+}
+
+.project-item:hover .project-image {
+  transform: translateZ(20px);
 }
 
 .project-image::before {
@@ -536,6 +596,267 @@
   font-size: 0.85rem;
 }
 
+/* Feature Card 3D Effects */
+.feature-card {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  border: 2px solid var(--border-color);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  position: relative;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px) rotateX(5deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ef4444;
+}
+
+.feature-icon {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  transition: all 0.4s ease;
+  transform: translateZ(20px);
+}
+
+.feature-card:hover .feature-icon {
+  transform: translateZ(30px) scale(1.1);
+  color: var(--primary-color-dark);
+}
+
+.feature-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  transform: translateZ(15px);
+}
+
+.feature-card:hover h3 {
+  transform: translateZ(25px);
+  color: var(--primary-color);
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  transform: translateZ(10px);
+}
+
+.feature-card:hover p {
+  transform: translateZ(20px);
+  opacity: 1;
+}
+
+/* Service Card 3D Effects */
+.service-card {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 1rem;
+  transition: all 0.4s ease;
+  border: 2px solid var(--border-color);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  position: relative;
+}
+
+.service-card:hover {
+  transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ef4444;
+}
+
+.service-icon {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  transition: all 0.4s ease;
+  transform: translateZ(20px);
+}
+
+.service-card:hover .service-icon {
+  transform: translateZ(30px) scale(1.1);
+  color: var(--primary-color-dark);
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  transform: translateZ(15px);
+}
+
+.service-card:hover h3 {
+  transform: translateZ(25px);
+  color: var(--primary-color);
+}
+
+.service-card p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+  transform: translateZ(10px);
+}
+
+.service-card:hover p {
+  transform: translateZ(20px);
+  color: var(--text-primary);
+}
+
+.service-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  transform: translateZ(5px);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-features {
+  transform: translateZ(15px);
+}
+
+.service-features li {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.service-features li::before {
+  content: '•';
+  color: var(--primary-color);
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-features li::before {
+  transform: scale(1.5);
+  color: var(--primary-color-dark);
+}
+
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  transform: translateZ(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover .service-link {
+  transform: translateZ(20px);
+}
+
+.service-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.service-link:hover::after {
+  width: 100%;
+}
+
+.service-link:hover {
+  gap: 1rem;
+  color: var(--primary-color-dark);
+}
+
+/* Animation Keyframes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes rotate3D {
+  0% {
+    transform: rotateX(0) rotateY(0);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+/* Apply animations to elements */
+.card:hover .card-img-top {
+  animation: pulse 2s infinite;
+}
+
+.feature-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+.service-icon {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.project-image::before {
+  animation: pulse 3s infinite;
+}
+
+/* Add 3D tilt effect on mouse move */
+.card, .project-item, .feature-card, .service-card {
+  transition: transform 0.3s ease;
+}
+
+/* Add this to your JavaScript to enable 3D tilt effect */
+/* 
+document.querySelectorAll('.card, .project-item, .feature-card, .service-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+  });
+});
+*/
+
 /* Responsive Styles */
 @media (max-width: 991px) {
   .carousel-content h2 {
@@ -571,4 +892,49 @@
   .about-section img, .project-image img {
     margin-bottom: 30px;
   }
+  
+  /* Fix for pagination button overlap in mobile view */
+  .carousel-indicators {
+    bottom: 20px; /* Reset to original position */
+    padding: 8px 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    z-index: 20;
+  }
+  
+  .carousel-content {
+    padding-bottom: 80px; /* Increase padding to prevent text overlap with indicators */
+    margin-bottom: 40px; /* Add margin to create more space */
+  }
+  
+  .carousel-control {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+    z-index: 15;
+  }
+  
+  /* Adjust carousel height for mobile */
+  .hero-carousel {
+    height: 450px; /* Slightly reduce height on mobile */
+  }
+  
+  /* Ensure carousel items don't overlap with indicators */
+  .carousel-item {
+    padding-bottom: 60px;
+  }
+}
+
+/* Add glowing red border animation */
+@keyframes glowRed {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(239, 68, 68, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+  }
+}
+
+.card:hover, .project-item:hover, .feature-card:hover, .service-card:hover {
+  animation: glowRed 2s infinite;
 } 
