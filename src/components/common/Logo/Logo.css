@@ -1,0 +1,150 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.logo-image {
+  height: 40px;
+  width: auto;
+  transition: transform var(--transition-spring);
+}
+
+.logo:hover .logo-image {
+  transform: scale(1.05);
+}
+
+/* Size variations */
+.logo-small .logo-image {
+  height: 30px;
+}
+
+.logo-medium .logo-image {
+  height: 40px;
+}
+
+.logo-large .logo-image {
+  height: 60px;
+}
+
+/* Theme variations */
+.logo-dark {
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.logo-light {
+  filter: brightness(1) contrast(1);
+}
+
+/* Special effects */
+.logo-animated {
+  animation: logoPulse 2s infinite;
+}
+
+.logo-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.logo-3d:hover {
+  transform: rotateY(10deg) rotateX(5deg);
+}
+
+.logo-glow {
+  filter: drop-shadow(0 0 5px rgba(var(--primary-color-rgb), 0.5));
+}
+
+.logo-glow:hover {
+  filter: drop-shadow(0 0 10px rgba(var(--primary-color-rgb), 0.7));
+}
+
+/* Gradient variations */
+.logo-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.logo-gradient-dark {
+  background: var(--dark-gradient-1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.logo-gradient-light {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hover effects */
+.logo-gradient-hover {
+  transition: all var(--transition-normal);
+}
+
+.logo-gradient-hover:hover {
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.logo-gradient-hover-dark:hover {
+  background: var(--dark-gradient-2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.logo-gradient-hover-light:hover {
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes logoPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo-small .logo-image {
+    height: 25px;
+  }
+  
+  .logo-medium .logo-image {
+    height: 35px;
+  }
+  
+  .logo-large .logo-image {
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-small .logo-image {
+    height: 20px;
+  }
+  
+  .logo-medium .logo-image {
+    height: 30px;
+  }
+  
+  .logo-large .logo-image {
+    height: 40px;
+  }
+} 

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useTheme } from '../../../context/ThemeContext';
+import Logo from '../../common/Logo/Logo';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -43,15 +44,9 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${isDarkMode ? 'dark' : ''}`}>
       <div className="container">
-        <Link to="/" className="navbar-logo">
-          <motion.img
-            src="https://www.natlov.com/static/images/inline-logo-1.png"
-            alt="NatLov Logo"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          />
-        </Link>
+        <div className="navbar-logo">
+          <Logo size="medium" variant={scrolled ? 'default' : 'glow'} />
+        </div>
 
         <div className={`navbar-menu ${isOpen ? 'active' : ''}`}>
           {navLinks.map((link) => (
